@@ -1,14 +1,39 @@
 package com.example.webflux_demo;
 import org.junit.Test;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 public class example {
-    
+
     //1~100 까지의 자연수 중 짝수만 출력하는 로직 검증
     @Test
     public void num2(){
+        Flux flux = Flux.just(1,100)
+
+                .log();
+
+        for (int i = 1; i < 100; i++) {
+            // i%2 == 0
+            StepVerifier.create(flux)
+                    .expectNext(100)
+                    .verifyComplete();
+        }
 
     }
 
+    @Test
+    public void testError() {
+        Flux flux = Flux.just("thing1", "thing2")
+                .concatWith(Mono.error(new IllegalArgumentException("boom")))
+                .log();
+
+        StepVerifier.create(flux)
+                .expectNext("thing1")
+                .expectNext("thing2")
+                .expectError();
+//                .verify();
+    }
 
 
     //“hello”, “there” 를 순차적으로 publish하여 순서대로 나오는지 검증
