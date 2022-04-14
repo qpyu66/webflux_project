@@ -139,9 +139,10 @@ public class Practice {
 
 
 
-    //1. ["Blenders", "Old", "Johnnie"] 와 "[Pride", "Monk", "Walker"] 를
-    // 순서대로 하나의 스트림으로 처리되는 로직 검증
-
+    /*
+    1. ["Blenders", "Old", "Johnnie"] 와 "[Pride", "Monk", "Walker"] 를
+     순서대로 하나의 스트림으로 처리되는 로직 검증
+    */
     @Test
     public void concatWithDelay() {
         Flux<String> names1 = Flux.just("Blenders", "Old", "Johnnie")
