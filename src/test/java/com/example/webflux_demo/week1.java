@@ -51,7 +51,6 @@ public class week1 {
     @Test
     public void num3(){
         Flux<String> flux = Flux.just("hello","there")
-                .publishOn(Schedulers.boundedElastic())
                 .log();
 
         StepVerifier.create(flux)
