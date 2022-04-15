@@ -86,9 +86,6 @@ public class week1 {
                 return name;
             }
 
-            public void setName(String name) {
-                this.name = name.toUpperCase();
-            }
         }
 
         Person person1 = new Person("John", "[john@gmail.com](mailto:john@gmail.com)", "12345678");
