@@ -1,11 +1,15 @@
 package com.example.webflux_demo;
+import com.example.webflux_demo.dto.Person;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 import reactor.test.StepVerifier;
 
 import java.time.Duration;
 import java.util.Locale;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class week1 {
 
@@ -40,7 +44,11 @@ public class week1 {
                 .log();
 
             StepVerifier.create(flux)
-                    .expectNextCount(50)
+//                    .expectNextCount(50)
+                    .thenConsumeWhile(num -> {
+                        assertThat(num%2==0);
+                        return true;
+                    })
                     .verifyComplete();
     }
 
@@ -91,14 +99,34 @@ public class week1 {
         Person person2 = new Person("Jack", "[jack@gmail.com](mailto:jack@gmail.com)", "12345678");
 
         Flux<String> names =  Flux.just(person1,person2)
-                    .map(p -> p.getName().toUpperCase(Locale.ROOT))
-                    .log();
+                .map(p -> p.getName().toUpperCase(Locale.ROOT))
+                .log();
 
         StepVerifier.create(names)
                 .expectNext("JOHN")
                 .expectNext("JACK")
                 .verifyComplete();
     }
+
+
+//    @Test
+//    public void num4_refac(){
+//        Person person1 = new Person("John", "[john@gmail.com](mailto:john@gmail.com)", "12345678");
+//        Person person2 = new Person("Jack", "[jack@gmail.com](mailto:jack@gmail.com)", "12345678");
+//
+//        Flux<Person> names =  Flux.just(person1,person2)
+//                    .map(person -> {
+//                        person.getName().toUpperCase();
+//                        return person;
+//                    })
+//                    .log();
+//
+//        StepVerifier.create(names)
+//                .expectSubscription()
+//                .assertNext(p->assertThat(p.getName()).isEqualTo("JOHN"))
+//                .assertNext(p->assertThat(p.getName()).isEqualTo("JACK"))
+//                .verifyComplete();
+//    }
 
 
 
@@ -108,10 +136,10 @@ public class week1 {
      */
     @Test
     public void num5(){
-        Flux<String> person1 = Flux.just("Blenders", "Old", "Johnnie")
-                .delayElements(Duration.ofSeconds(1));
-        Flux<String> person2 = Flux.just("Pride", "Monk", "Walker")
-                .delayElements(Duration.ofSeconds(1));
+        Flux<String> person1 = Flux.just("Blenders", "Old", "Johnnie").log();
+//                .delayElements(Duration.ofSeconds(1));
+        Flux<String> person2 = Flux.just("Pride", "Monk", "Walker").log();
+//                .delayElements(Duration.ofSeconds(1));
 
         Flux<String> names = Flux.zip(person1, person2, (p1, p2) -> p1 + " " + p2)
                         .log();
