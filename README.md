@@ -3,7 +3,7 @@
    
 ## 과제   
 - [1주차 과제 - Webflux](https://github.com/qpyu66/webflux_project/blob/master/src/test/java/com/example/webflux_demo/week1.java)
-
+- [2주차 과제 - Resr API 에 반응하는 local 웹서버 앱 구축](https://github.com/qpyu66/webflux_project/blob/master/src/main/java/com/example/webflux_demo/RouterConfig.java)
 
 
 ## 블로그 정리   
