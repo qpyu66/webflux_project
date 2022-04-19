@@ -15,7 +15,7 @@ public class RouterConfig {
     @Bean
     public RouterFunction<ServerResponse> route(PostHandler handler) {
         return RouterFunctions.route(
-                RequestPredicates.GET("/hello/{name}").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), handler::getByName);
+                RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), handler::getByName);
     }
 
 }
