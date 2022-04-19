@@ -16,8 +16,10 @@ public class PostHandler {
     private Mono<HashMap<Object, Object>> mapper = Mono.just(result);
 
     public Mono<ServerResponse> getByName(ServerRequest request) {
-        result.put("to", "{name}");
-        result.put("message", "hello {name}");
+        String name = String.valueOf(request.queryParam("name"));
+        System.out.println("name > "+name);
+        result.put("to", name);
+        result.put("message", "hello "+name);
         mapper.subscribe( (arg)->{
             System.out.println(arg);
             System.out.println("request > "+request);
