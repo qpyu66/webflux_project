@@ -1,4 +1,4 @@
-package com.example.webflux_demo;
+package com.example.webflux_demo.hello;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 
 @Component
-public class PostHandler {
+public class HelloHandler {
     private HashMap<Object, Object> result = new HashMap<>();
     private Mono<HashMap<Object, Object>> mapper = Mono.just(result);
 

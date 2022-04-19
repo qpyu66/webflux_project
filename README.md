@@ -2,14 +2,40 @@
 
    
 ## 과제   
-- [1주차 과제 - Webflux](https://github.com/qpyu66/webflux_project/blob/master/src/test/java/com/example/webflux_demo/week1.java)
-- [2주차 과제 - Resr API 에 반응하는 local 웹서버 앱 구축](https://github.com/qpyu66/webflux_project/blob/master/src/main/java/com/example/webflux_demo/RouterConfig.java)
+- [1주차 과제 - Webflux 예제](https://github.com/qpyu66/webflux_project/blob/master/src/test/java/com/example/webflux_demo/week1.java)
+- [2주차 과제(1) - Resr API 에 반응하는 local 웹서버 앱 구축](https://github.com/qpyu66/webflux_project/blob/master/src/main/java/com/example/webflux_demo/RouterConfig.java)
+  - Spec
+      - Spring 5+, Java 11+, WebFlux, Functional EndPoint
+  
+  - Request
+    ```
+      GET localhost:8080/hello?name$name
+    ```
 
+   - Response -  aplication/json
+    ```
+    {
+       "to": '${name}',
+       "message": 'hello ${name}'
+    }
+    ```
+  
+- [2주차 과제(2) - REST API 로 내부 통신하는 MSA 구축하기]()
 
-## 블로그 정리   
-- [Event Driven Architecture란?](https://bsssss.tistory.com/1053)
-- [Reactive Programming](https://bsssss.tistory.com/1058)
-- [Reactive Streams](https://bsssss.tistory.com/1074)
-- [WebFlux와 Mono, Flux](https://bsssss.tistory.com/1064)
+  - Requirement 
+    - 어제 만든 SayHello Server 에서 InfoService Server 로 내부 호출
+    - InfoService 는 호출 파라미터로 찾은 데이터의 직업 응답
+  - Spec 
+    - WebClient
+
+  - Request
+      ```
+        GET localhost:8080/hello?name=$name
+      ```
+  - Response - application/json
+     ```
+       { “to”: “$name”, “job”: “”, “message”: “hello $name” }
+     ```
+
 
 
